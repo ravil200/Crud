@@ -22,7 +22,7 @@ def index(request):
 
 
 def edit(request, id):
-    employer = Employer.odjects.get(id=id)
+    employer = Employer.objects.get(id=id)
     context = {'employer': employer}
     return render(request, 'edit.html', context)
 
