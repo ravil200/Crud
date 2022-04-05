@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from grid.views import addnew, index , edit
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', index),
+    path('addnew', addnew, name='addnew'),
+    path('edit/<int:pk>', edit, name='edit')
 ]

@@ -14,4 +14,15 @@ def addnew(request):
                 pass
     else:
         form = EmployerForm()
-        return render(request, 'index.html', {'f': form})
+        return render(request, 'index.html', {'form': form})
+
+def index(request):
+    employers = Employer.objects.all()
+    return render(request, 'show.html', {'employers':employers})
+
+
+def edit(request, id):
+    employer = Employer.odjects.get(id=id)
+    context = {'employer': employer}
+    return render(request, 'edit.html', context)
+
