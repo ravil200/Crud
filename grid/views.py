@@ -26,3 +26,15 @@ def edit(request, id):
     context = {'employer': employer}
     return render(request, 'edit.html', context)
 
+def update(request, id):
+    employer = Employer.objects.get(id=id)
+    form = EmployerForm(request.POST, instance=employer)
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+    return render(request, 'edit.html', {'employer':employer})
+
+def delete(request, id):
+    employer = Employer.objects.get(id=id)
+    employer.delete()
+    return redirect('/')
