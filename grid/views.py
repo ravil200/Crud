@@ -38,3 +38,16 @@ def delete(request, id):
     employer = Employer.objects.get(id=id)
     employer.delete()
     return redirect('/')
+
+def homepage(request):
+    if request.method == '/homepage':
+        form = EmployerForm(request.homepage)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('/homepage')
+            except:
+                pass
+    else:
+        form = EmployerForm()
+        return render(request, 'index.html', {'form': form})
